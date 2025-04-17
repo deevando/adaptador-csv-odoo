@@ -29,7 +29,7 @@ if archivo:
             .str.replace(' eur.', '', regex=False)
            # .str.replace('.', '', regex=False)
            # .str.replace(',', '.', regex=False)
-            .astype(float)
+           # .astype(float)
         )
 
         df['Etiqueta'] = df['Operación'].fillna('') + ' - ' + df['Establecimiento'].fillna('')
