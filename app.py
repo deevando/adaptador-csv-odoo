@@ -5,14 +5,17 @@ from io import StringIO
 st.set_page_config(page_title="Adaptador CSV para Odoo", layout="centered")
 st.title("📄 Adaptador de Extracto Bancario para Odoo")
 
-archivo = st.file_uploader("Sube tu archivo CSV (formato bancario)", type=["csv"])
+import csv
 
-if archivo:
-    try:
-        try:
-            df = pd.read_csv(archivo, sep=';', encoding='utf-8')
-        except UnicodeDecodeError:
-            df = pd.read_csv(archivo, sep=';', encoding='ISO-8859-1')
+try:
+    archivo.seek(0)
+    sample = archivo.read(2048).decode('utf-8', errors='ignore')
+    delimiter = csv.Sniffer().sniff(sample).delimiter
+    archivo.seek(0)
+    df = pd.read_csv(archivo, sep=delimiter, encoding='utf-8', engine='python')
+except Exception:
+    archivo.seek(0)
+    df = pd.read_csv(archivo, sep=';', encoding='ISO-8859-1', engine='python')
 
 
         # Limpiar y convertir el importe
