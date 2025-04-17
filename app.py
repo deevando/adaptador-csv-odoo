@@ -27,8 +27,8 @@ if archivo:
         df['Importe'] = (
             df['Importe']
             .str.replace(' eur.', '', regex=False)
-            .str.replace('.', '', regex=False)
-            .str.replace(',', '.', regex=False)
+           # .str.replace('.', '', regex=False)
+           # .str.replace(',', '.', regex=False)
             .astype(float)
         )
 
