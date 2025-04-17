@@ -8,10 +8,11 @@ st.title("📄 Adaptador de Extracto Bancario para Odoo")
 archivo = st.file_uploader("Sube tu archivo CSV (formato bancario)", type=["csv"])
 
 if archivo:
+    try:
         try:
-        df = pd.read_csv(archivo, sep=';', encoding='utf-8')
+            df = pd.read_csv(archivo, sep=';', encoding='utf-8')
         except UnicodeDecodeError:
-        df = pd.read_csv(archivo, sep=';', encoding='ISO-8859-1')
+            df = pd.read_csv(archivo, sep=';', encoding='ISO-8859-1')
 
 
         # Limpiar y convertir el importe
