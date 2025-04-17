@@ -32,7 +32,7 @@ if archivo:
             .astype(float)
         )
 
-        df['Descripción'] = df['Operación'].fillna('') + ' - ' + df['Establecimiento'].fillna('')
+        df['Etiqueta'] = df['Operación'].fillna('') + ' - ' + df['Establecimiento'].fillna('')
         df['Fecha'] = pd.to_datetime(df['Fecha y hora'], format='%d/%m/%Y %H:%M').dt.strftime('%d/%m/%Y')
 
         df_final = df[['Fecha', 'Descripción', 'Importe']]
